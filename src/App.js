@@ -40,18 +40,40 @@ function App() {
         </div>
       </div>
 
-      {data.categories.map((menuItems, index) => (
-        <div className="menuItems">
-          <h2>{menuItems[index].name}</h2>
-
-          {data.categories[index].meals.map((menuItemsCard, j) => (
-            <div className="menuItemsCard">
-              <h3>{menuItemsCard.title}</h3>
-              <p>{menuItemsCard.description}</p>
+      {data.categories.map((menuItems, index) => {
+        console.log(menuItems);
+        return (
+          <div className="menuItems">
+            <h1>{menuItems.name}</h1>
+            <div className="menuItemsBody">
+              {data.categories[index].meals.map((menuItemsCard, j) => {
+                console.log(menuItemsCard);
+                return (
+                  <div className="menuBodyCard">
+                    <div className="menuItemsCard">
+                      <h2>{menuItemsCard.title}</h2>
+                      <p>{menuItemsCard.description}</p>
+                      <div className="menuItemsInfo"></div>
+                      <div className="price">{menuItemsCard.price}</div>
+                      <div className="populaire">POPULAIRE wip</div>
+                    </div>
+                    <div className="menuItemCardImage">
+                      {menuItemsCard.picture ? (
+                        <img
+                          src={menuItemsCard.picture}
+                          alt="menu item card picture"
+                        />
+                      ) : (
+                        <div className="whiteBloc"></div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          ))}
-        </div>
-      ))}
+          </div>
+        );
+      })}
     </div>
   );
 }
