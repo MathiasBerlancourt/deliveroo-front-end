@@ -1,20 +1,20 @@
-const MenuItemsCard = ({ menuItemsCard }) => {
+const Meal = ({ meal }) => {
   //   console.log(menuItemsCard);
   //   return <p>Meal</p>;
   return (
     <div className="menuBodyCard">
       <div className="menuItemsCard">
-        <h2>{menuItemsCard.title}</h2>
-        <p>{menuItemsCard.description}</p>
+        <h2>{meal.title}</h2>
+        <p>{meal.description}</p>
         <div className="menuItemsInfo"></div>
         <div className="price-popular-container">
-          <div className="price">{menuItemsCard.price} €</div>
+          <div className="price">{meal.price} €</div>
           <div className="populaire">POPULAIRE wip</div>
         </div>
       </div>
       <div className="menuItemCardImage">
-        {menuItemsCard.picture ? (
-          <img src={menuItemsCard.picture} alt="menu item card picture" />
+        {meal.picture ? (
+          <img src={meal.picture} alt="menu item card " />
         ) : (
           <></>
         )}
@@ -23,4 +23,4 @@ const MenuItemsCard = ({ menuItemsCard }) => {
   );
 };
 
-export default MenuItemsCard;
+export default Meal;
