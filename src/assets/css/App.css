@@ -42,16 +42,22 @@
 * {
   box-sizing: border-box;
 }
+.App {
+  margin: 01% 5%;
+}
 h1 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
 h2 {
-  font-size: 18px;
+  font-size: 25px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin-bottom: 20px;
 }
 
 .header {
@@ -69,8 +75,11 @@ h2 {
   object-fit: cover;
   border-radius: 0;
 }
+.text {
+  margin: 2% 0;
+}
 .menuItems {
-  border: 2px solid blue;
+  background-color: #f3f5f5;
   display: flex;
   flex-direction: column;
 }
@@ -78,31 +87,47 @@ h2 {
   display: flex;
   background-color: grey;
   flex-wrap: wrap;
-  width: 75%;
+  justify-content: space-between;
+  width: 70%;
+  max-width: 950px;
+  min-width: 350px;
+  text-align: left;
+  align-items: center;
 }
 .menuBodyCard {
   display: flex;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding: 1%;
+  height: ;
   justify-content: space-around;
-
+  margin-top: 1%;
+  margin-bottom: 1%;
   border: 2px solid greenyellow;
-  width: 50%;
+  /* width: 45%; */
+  height: 160px;
+
+  min-width: 350px;
+  width: 400px;
   border-radius: 15px;
+  background-color: #f3f5f5;
 }
 .menuItemsCard {
   display: flex;
   flex-wrap: wrap;
   border: 2px solid orange;
   width: 75%;
+  overflow: hidden;
+
+  justify-content: space-between;
 }
-.menuItemsInfo {
-  display: flex;
-}
+
 p {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #919494;
+}
+.price-popular-container {
+  display: flex;
+  justify-content: space-between;
 }
 .price {
   font-size: 17px;
@@ -121,11 +146,11 @@ p {
   flex-direction: column;
 }
 .menuItemCardImage img {
-  height: 100px;
-  width: 100px;
+  height: 130px;
+  width: 130px;
   border-radius: 5px;
-  overflow: hidden;
-  position: relative;
+  object-fit: cover;
+  border-radius: 5px;
 }
 .whiteBloc {
   height: 130px;

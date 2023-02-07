@@ -1,8 +1,8 @@
 import "./assets/css/App.css";
 import logoteal from "./assets/img/logo-teal.svg";
 import axios from "axios";
+import MenuItems from "./components/MenuItems";
 import { useState, useEffect } from "react";
-import { computeHeadingLevel } from "@testing-library/react";
 
 function App() {
   const [data, setData] = useState();
@@ -10,7 +10,9 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3200/");
+        const response = await axios.get(
+          "https://site--deliveroo-backend--x9gzzf87kd8r.code.run/"
+        );
         console.log(response.data);
         setData(response.data);
         setIsLoading(false);
@@ -39,41 +41,12 @@ function App() {
           <p>{data.restaurant.description}</p>
         </div>
       </div>
-
-      {data.categories.map((menuItems, index) => {
-        console.log(menuItems);
-        return (
-          <div className="menuItems">
-            <h1>{menuItems.name}</h1>
-            <div className="menuItemsBody">
-              {data.categories[index].meals.map((menuItemsCard, j) => {
-                console.log(menuItemsCard);
-                return (
-                  <div className="menuBodyCard">
-                    <div className="menuItemsCard">
-                      <h2>{menuItemsCard.title}</h2>
-                      <p>{menuItemsCard.description}</p>
-                      <div className="menuItemsInfo"></div>
-                      <div className="price">{menuItemsCard.price}</div>
-                      <div className="populaire">POPULAIRE wip</div>
-                    </div>
-                    <div className="menuItemCardImage">
-                      {menuItemsCard.picture ? (
-                        <img
-                          src={menuItemsCard.picture}
-                          alt="menu item card picture"
-                        />
-                      ) : (
-                        <div className="whiteBloc"></div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
+      <div>
+        {data.categories.map((menuItems, index) => {
+          console.log(menuItems);
+          return <MenuItems menuItems={menuItems} />;
+        })}
+      </div>
     </div>
   );
 }
