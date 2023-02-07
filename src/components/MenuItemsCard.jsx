@@ -1,4 +1,6 @@
 const MenuItemsCard = ({ menuItemsCard }) => {
+  //   console.log(menuItemsCard);
+  //   return <p>Meal</p>;
   return (
     <div className="menuBodyCard">
       <div className="menuItemsCard">

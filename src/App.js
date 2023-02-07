@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [basket, setBasket] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,11 +42,27 @@ function App() {
           <p>{data.restaurant.description}</p>
         </div>
       </div>
-      <div>
-        {data.categories.map((menuItems, index) => {
-          console.log(menuItems);
-          return <MenuItems menuItems={menuItems} />;
-        })}
+      <div className="container">
+        <section className="menu">
+          {data.categories.map((menuItems, index) => {
+            console.log(menuItems);
+
+            if (menuItems.meals.length !== 0) {
+              // Je donne l'objet représentant une categorie en props à mon composant
+              return <MenuItems menuItems={menuItems} />;
+            } else {
+              // Sinon rien
+              return null;
+            }
+          })}
+        </section>
+        <section className="basket">
+          <button>Valide mon panier</button>
+          <article className="line"></article>
+          <div className="subtotal">Sous-total</div>
+          <div className="deliveryFees">Frais de livraison</div>
+          <div className="Total">Total</div>
+        </section>
       </div>
     </div>
   );

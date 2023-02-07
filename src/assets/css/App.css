@@ -78,18 +78,28 @@ h2 {
 .text {
   margin: 2% 0;
 }
+.container {
+  display: flex;
+}
+.menu {
+  width: 70%;
+}
+.basket {
+  width: 30%;
+}
 .menuItems {
   background-color: #f3f5f5;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .menuItemsBody {
   display: flex;
   background-color: grey;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 70%;
-  max-width: 950px;
+  width: 100%;
+  max-width: 1200px;
   min-width: 350px;
   text-align: left;
   align-items: center;
