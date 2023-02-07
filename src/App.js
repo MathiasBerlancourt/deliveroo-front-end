@@ -42,6 +42,15 @@ function App() {
     setBasket(newTab);
     console.log(newTab);
   };
+  const sumPrices = (array) => {
+    console.log("sumPrice", array);
+    let sum = 0;
+    if (!array === []) {
+      sum = array.map((item) => item.price).reduce((prev, next) => prev + next);
+    }
+    console.log("SUM :", sum);
+    return sum;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -109,25 +118,36 @@ function App() {
                     handleBasketMinus(line.id);
                   }}
                 >
-                  -
+                  <span>-</span>
                 </button>
-                {line.quantity}
+                <span>{line.quantity}</span>
                 <button
                   onClick={() => {
                     handleBasket(line.id, line.title, line.price);
                   }}
                 >
-                  +
+                  <span>+</span>
                 </button>
-                {line.title}
-                {line.quantity > 1 ? line.price * line.quantity : line.price}
+                <div className="basketMeal">
+                  {line.title}
+                  {line.quantity > 1 ? line.price * line.quantity : line.price}
+                </div>
               </article>
             ))}
           </div>
 
-          <div className="subtotal">Sous-total</div>
-          <div className="deliveryFees">Frais de livraison</div>
-          <div className="Total">Total</div>
+          <div className="subtotal">
+            <div className="basketName">Sous-total</div>
+            <div className="basketAmount">{sumPrices(basket)}</div>
+          </div>
+          <div className="deliveryFees">
+            <div className="basketName">Frais de livraison</div>
+            <div className="basketAmount">{2.5}</div>
+          </div>
+          <div className="Total">
+            <div className="basketName">Total</div>
+            <div className="basketAmount"></div>
+          </div>
         </section>
       </div>
     </div>
