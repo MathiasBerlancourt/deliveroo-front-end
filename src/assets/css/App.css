@@ -177,3 +177,24 @@ p {
   overflow: hidden;
   position: relative;
 } */
+.basketContainer {
+  display: flex;
+  flex-direction: column;
+}
+.basketContainer div {
+  display: flex;
+  justify-content: space-between;
+}
+.lineContainer {
+  display: flex;
+  flex-direction: column;
+}
+.line {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.basketMeal {
+  display: flex;
+  gap: 20px;
+}

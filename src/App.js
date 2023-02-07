@@ -26,7 +26,7 @@ function App() {
   };
   const handleBasket = (id, title, price) => {
     const newTab = [...basket];
-    const meal = { id: id, title: title, price: price, quantity: 1 };
+    const meal = { id: id, title: title, price: Number(price), quantity: 1 };
     let found = false;
     for (let i = 0; i < newTab.length; i++) {
       if (newTab[i].id === id) {
@@ -40,17 +40,21 @@ function App() {
     }
 
     setBasket(newTab);
-    console.log(newTab);
+    console.log("Mon newTab après ajout", newTab);
   };
   const sumPrices = (array) => {
     console.log("sumPrice", array);
     let sum = 0;
-    if (!array === []) {
-      sum = array.map((item) => item.price).reduce((prev, next) => prev + next);
-    }
+
+    array.forEach(({ price, quantity }) => {
+      console.log("Price", price);
+      return (sum += price * quantity);
+    });
+
     console.log("SUM :", sum);
     return sum;
   };
+  console.log("test de sumprices", sumPrices(basket));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -108,45 +112,55 @@ function App() {
           })}
         </section>
         <section className="basket">
-          <button>Valider mon panier</button>
+          <div className="basketContainer">
+            <button>Valider mon panier</button>
 
-          <div>
-            {basket.map((line, index) => (
-              <article key={index} className="line">
-                <button
-                  onClick={() => {
-                    handleBasketMinus(line.id);
-                  }}
-                >
-                  <span>-</span>
-                </button>
-                <span>{line.quantity}</span>
-                <button
-                  onClick={() => {
-                    handleBasket(line.id, line.title, line.price);
-                  }}
-                >
-                  <span>+</span>
-                </button>
-                <div className="basketMeal">
-                  {line.title}
-                  {line.quantity > 1 ? line.price * line.quantity : line.price}
-                </div>
-              </article>
-            ))}
-          </div>
+            <div className="lineContainer">
+              {basket.map((line, index) => (
+                <article key={index} className="line">
+                  <div className="basketCounter">
+                    <button
+                      onClick={() => {
+                        handleBasketMinus(line.id);
+                      }}
+                    >
+                      <span>-</span>
+                    </button>
+                    <span>{line.quantity}</span>
+                    <button
+                      onClick={() => {
+                        handleBasket(line.id, line.title, Number(line.price));
+                      }}
+                    >
+                      <span>+</span>
+                    </button>
+                  </div>
+                  <div className="basketMeal">
+                    <div className="itemTitle">{line.title}</div>
+                    <div className="itemAmount">
+                      {Number(
+                        line.quantity > 1
+                          ? line.price * line.quantity
+                          : line.price
+                      )}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
 
-          <div className="subtotal">
-            <div className="basketName">Sous-total</div>
-            <div className="basketAmount">{sumPrices(basket)}</div>
-          </div>
-          <div className="deliveryFees">
-            <div className="basketName">Frais de livraison</div>
-            <div className="basketAmount">{2.5}</div>
-          </div>
-          <div className="Total">
-            <div className="basketName">Total</div>
-            <div className="basketAmount"></div>
+            <div className="subtotal">
+              <div className="basketName">Sous-total</div>
+              <div className="basketAmount">{sumPrices(basket)}</div>
+            </div>
+            <div className="deliveryFees">
+              <div className="basketName">Frais de livraison</div>
+              <div className="basketAmount">{2.5}</div>
+            </div>
+            <div className="Total">
+              <div className="basketName">Total</div>
+              <div className="basketAmount">{sumPrices(basket) + 2.5}</div>
+            </div>
           </div>
         </section>
       </div>
